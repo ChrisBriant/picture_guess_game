@@ -3,7 +3,10 @@
 	import sock from '../services/socket';
 	import TextInput from '../components/TextInput.svelte';
 	import Button from '../components/Button.svelte';
+	import RoomList from '../components/RoomList.svelte';
+	import RoomScreen from '../screens/RoomScreen.svelte';
 	import { sockStoreActions } from '../services/socketstore';
+	import { uiStoreActions } from '../components/componentstatusstore';
 
   let roomName = '';
 
@@ -27,11 +30,16 @@
 
 
 <div>
-	<TextInput
-		id = "room-input"
-		label = "Room Name"
-		value = {roomName}
-    on:input = {e => {roomName = e.target.value} }
-	 />
-	 <Button on:click={sendRoom}>Create Room</Button>
+	{#if $uiStoreActions.inRoom }
+		<RoomScreen />
+	{:else}
+	 <TextInput
+			id = "room-name"
+			label = "Room Name"
+			value = {roomName}
+	   on:input = {e => {roomName = e.target.value} }
+		 />
+		 <Button id="sendroom" on:click={sendRoom}>Create Room</Button>
+		 <RoomList />
+	{/if}
 </div>

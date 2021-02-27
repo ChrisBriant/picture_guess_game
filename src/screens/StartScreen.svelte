@@ -32,5 +32,5 @@
 		value = {name}
 		on:input = {e => {name = e.target.value} }
 	 />
-	 <Button on:click={sendName}>Start</Button>
+	 <Button id="sendname" on:click={sendName}>Start</Button>
 </div>

@@ -38,15 +38,20 @@
 					uiStoreActions.setRegistered();
 					break;
 				 case 'room_list':
-				 	sockStoreActions.setRoomList(data.rooms);
+				 	sockStoreActions.setRoomList(JSON.parse(data.rooms));
 					break;
-				 // case 'room_entrance':
-					//  dispatch({type:'enterRoom', payload:data});
-					//  break;
-				 // case 'room_exit':
-					//  dispatch({type:'exitRoom', payload:data});
-					//  break;
-				 // case 'game_exit':
+				 case 'room_entrance':
+				 	 sockStoreActions.setRoom(data);
+					 uiStoreActions.setInRoom(true);
+					 //dispatch({type:'enterRoom', payload:data});
+					 break;
+				 case 'room_exit':
+					 //sockStoreActions.exitRoom();
+					 uiStoreActions.setInRoom(false);
+					 inRoom = false;
+					 //dispatch({type:'exitRoom', payload:data});
+					 break;
+				 //case 'game_exit':
 					//  dispatch({type:'exitGameAndRoom', payload:data});
 					//  break;
 				 // case 'room_exit_nonmember':

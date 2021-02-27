@@ -2,7 +2,10 @@
 
 import { writable } from 'svelte/store';
 
-const socketStore = writable({});
+const socketStore = writable({
+  rooms: [],
+  room: {}
+});
 
 const sockStoreActions = {
     subscribe: socketStore.subscribe,
@@ -29,6 +32,12 @@ const sockStoreActions = {
     setRoomList: (rooms) => {
       socketStore.update(sock => {
         sock.rooms = rooms;
+        return sock;
+      });
+    },
+    setRoom: (room) => {
+      socketStore.update(sock => {
+        sock.room = room;
         return sock;
       });
     }

@@ -3,7 +3,8 @@
 import { writable } from 'svelte/store';
 
 const uiStore = writable({
-  registered:false
+  registered:false,
+  inRoom:false
 });
 
 const uiStoreActions = {
@@ -11,6 +12,12 @@ const uiStoreActions = {
     setRegistered: () => {
       uiStore.update(ui => {
         ui.registered = true;
+        return ui;
+      });
+    },
+    setInRoom: (inRoom) => {
+      uiStore.update(ui => {
+        ui.inRoom = inRoom;
         return ui;
       });
     },
