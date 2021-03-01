@@ -42,7 +42,7 @@
           </div>
           <div class="col">
             {#if room.locked === 'false' }
-              <p><a href='#' class="join-room" on:click={() => {joinRoom(room.name)}}>Join</a></p>
+              <p><a id={room.name} href='#' class="join-room" on:click={() => {joinRoom(room.name)}}>Join</a></p>
             {:else}
               <p>Game in progress</p>
             {/if}

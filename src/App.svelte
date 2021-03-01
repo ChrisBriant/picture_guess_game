@@ -46,9 +46,15 @@
 					 //dispatch({type:'enterRoom', payload:data});
 					 break;
 				 case 'room_exit':
+				 		//// TODO: Factor in room exiting
 					 //sockStoreActions.exitRoom();
 					 uiStoreActions.setInRoom(false);
 					 inRoom = false;
+					 //dispatch({type:'exitRoom', payload:data});
+					 break;
+				 case 'game_start':
+					 //sockStoreActions.exitRoom();
+					 uiStoreActions.setStartGame(data.startplayer);
 					 //dispatch({type:'exitRoom', payload:data});
 					 break;
 				 //case 'game_exit':

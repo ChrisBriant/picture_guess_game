@@ -4,7 +4,9 @@ import { writable } from 'svelte/store';
 
 const uiStore = writable({
   registered:false,
-  inRoom:false
+  inRoom:false,
+  inGame:false,
+  currentPlayer: null
 });
 
 const uiStoreActions = {
@@ -18,6 +20,13 @@ const uiStoreActions = {
     setInRoom: (inRoom) => {
       uiStore.update(ui => {
         ui.inRoom = inRoom;
+        return ui;
+      });
+    },
+    setStartGame: (startplayer) => {
+      uiStore.update(ui => {
+        ui.inGame = true;
+        ui.currentPlayer = startplayer;
         return ui;
       });
     },
