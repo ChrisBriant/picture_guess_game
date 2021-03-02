@@ -5,8 +5,8 @@
 	import Button from '../components/Button.svelte';
 	import RoomList from '../components/RoomList.svelte';
 	import RoomScreen from '../screens/RoomScreen.svelte';
-	import { sockStoreActions } from '../services/socketstore';
-	import { uiStoreActions } from '../components/componentstatusstore';
+	import { sockStoreActions } from '../stores/socketstore';
+	import { uiStoreActions } from '../stores/componentstatusstore';
 
   let roomName = '';
 

@@ -4,8 +4,8 @@
 	import Button from './components/Button.svelte';
 	import StartScreen from './screens/StartScreen.svelte';
 	import MainScreen from './screens/MainScreen.svelte';
-	import { sockStoreActions } from './services/socketstore';
-	import { uiStoreActions } from './components/componentstatusstore';
+	import { sockStoreActions } from './stores/socketstore';
+	import { uiStoreActions } from './stores/componentstatusstore';
 
 
 	$:console.log('STORE',$sockStoreActions);

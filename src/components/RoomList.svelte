@@ -1,6 +1,6 @@
 <script>
 	import sock from '../services/socket';
-  import { sockStoreActions } from '../services/socketstore';
+  import { sockStoreActions } from '../stores/socketstore';
 
   $:console.log('ROOMS', $sockStoreActions.rooms)
 

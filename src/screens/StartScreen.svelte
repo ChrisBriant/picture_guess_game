@@ -2,7 +2,7 @@
 	import sock from '../services/socket';
 	import TextInput from '../components/TextInput.svelte';
 	import Button from '../components/Button.svelte';
-	import { sockStoreActions } from '../services/socketstore';
+	import { sockStoreActions } from '../stores/socketstore';
 
 	//$:console.log('STORE',$sockStoreActions);
 	let name = '';

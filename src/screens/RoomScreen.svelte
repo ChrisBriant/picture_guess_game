@@ -1,7 +1,7 @@
 <script>
   import sock from '../services/socket';
-  import { sockStoreActions } from '../services/socketstore';
-  import { uiStoreActions } from '../components/componentstatusstore';
+  import { sockStoreActions } from '../stores/socketstore';
+  import { uiStoreActions } from '../stores/componentstatusstore';
   import Button from '../components/Button.svelte';
   import GameScreen from './GameScreen.svelte';
 
