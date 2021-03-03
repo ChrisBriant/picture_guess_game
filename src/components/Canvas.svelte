@@ -1,14 +1,18 @@
 <script>
 	import { onMount } from 'svelte';
   import { picStoreActions } from '../stores/picstore';
+	import { uiStoreActions } from '../stores/componentstatusstore';
+	import { sockStoreActions } from '../stores/socketstore';
 	import Toolbox from '../components/Toolbox.svelte';
 
   export let width = 300;
   export let height = 200;
+	export let drawMode = false;
 
 	let canvas;
   let m = { x: 0, y: 0, pos:'' };
   let draw = false;
+
 
 
   $: console.log($picStoreActions);
@@ -84,6 +88,11 @@
 		m.pos = 'e';
 		ctx.closePath();
 		picStoreActions.draw(m);
+		let payload = {
+			cid : $sockStoreActions.id,
+			gameId : $uiStoreActions.gameId
+		}
+		picStoreActions.sendPicture(payload);
     draw = false;
     console.log('Un Click');
   }
@@ -100,18 +109,29 @@
 	}
 </style>
 
-<canvas
-  bind:this={canvas}
-  on:mousemove={(e) => handleDrag(e)}
-  on:mousedown={(e) => handleClick(e)}
-  on:mouseup={(e) => handleUnClick(e)}
-	width={width}
-	height={height}
->
-</canvas>
-<div class="tool-panel">
-<Toolbox
-	on:wipeboard={wipeBoard}
-	on:redraw={reDraw}
- />
+<div>
+	{#if drawMode}
+		<canvas
+		  bind:this={canvas}
+		  on:mousemove={(e) => handleDrag(e)}
+		  on:mousedown={(e) => handleClick(e)}
+		  on:mouseup={(e) => handleUnClick(e)}
+			width={width}
+			height={height}
+		>
+		</canvas>
+		<div class="tool-panel">
+			<Toolbox
+				on:wipeboard={wipeBoard}
+				on:redraw={reDraw}
+			 />
+		 </div>
+	{:else}
+		<canvas
+			bind:this={canvas}
+			width={width}
+			height={height}
+		>
+		</canvas>
+	{/if}
 </div>

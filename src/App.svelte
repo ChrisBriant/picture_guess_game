@@ -6,7 +6,7 @@
 	import MainScreen from './screens/MainScreen.svelte';
 	import { sockStoreActions } from './stores/socketstore';
 	import { uiStoreActions } from './stores/componentstatusstore';
-
+	import Toolbox from './components/Toolbox.svelte';
 
 	$:console.log('STORE',$sockStoreActions);
 
@@ -54,7 +54,15 @@
 					 break;
 				 case 'game_start':
 					 //sockStoreActions.exitRoom();
-					 uiStoreActions.setStartGame(data.startplayer);
+					 uiStoreActions.setStartGame({
+						 'startPlayer' : data.startplayer,
+						 'gameId' : data.game_id
+					 });
+					 //dispatch({type:'exitRoom', payload:data});
+					 break;
+				 case 'word':
+					 //sockStoreActions.exitRoom();
+					 uiStoreActions.setWord(data.word);
 					 //dispatch({type:'exitRoom', payload:data});
 					 break;
 				 //case 'game_exit':
@@ -139,7 +147,7 @@
 
 
 <main>
-	<h1>Picture Game</h1>
+	<h1>Picture Gam</h1>
 	{#if !$uiStoreActions.registered}
 		<StartScreen />
 	{:else}

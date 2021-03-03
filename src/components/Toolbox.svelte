@@ -35,10 +35,8 @@
 
 
 </style>
-
 <div class="toolbox">
   <div
-    class="tooltip"
     on:click={() => {dispatch('wipeboard')}}
     on:mouseover={() => {showtip = true}}
     on:mouseout={() => {showtip = false}}

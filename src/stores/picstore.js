@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-
+import sock from '../services/socket';
 
 const picStore = writable([]);
 
@@ -17,6 +17,18 @@ const picStoreActions = {
         let newPic = [];
         return newPic;
       });
+    },
+    sendPicture: (clientData) => {
+      const unsubscribe = picStore.subscribe(async (picture) => {
+        let payload = {
+          'type' : 'picture',
+          'client_id' : clientData.cid,
+          'game_id' : clientData.gameId,
+          'picture' : picture
+        }
+        await sock.send(JSON.stringify(payload));
+      });
+      unsubscribe();
     }
 };
 

@@ -6,7 +6,8 @@ const uiStore = writable({
   registered:false,
   inRoom:false,
   inGame:false,
-  currentPlayer: null
+  currentPlayer: null,
+  word : ''
 });
 
 const uiStoreActions = {
@@ -23,13 +24,20 @@ const uiStoreActions = {
         return ui;
       });
     },
-    setStartGame: (startplayer) => {
+    setStartGame: (data) => {
       uiStore.update(ui => {
         ui.inGame = true;
-        ui.currentPlayer = startplayer;
+        ui.currentPlayer = data.startPlayer;
+        ui.gameId = data.gameId;
         return ui;
       });
     },
+    setWord: (word) => {
+      uiStore.update(sock => {
+        sock.word = word;
+        return sock;
+      });
+    }
 };
 
 
