@@ -6,6 +6,7 @@
 	import MainScreen from './screens/MainScreen.svelte';
 	import { sockStoreActions } from './stores/socketstore';
 	import { uiStoreActions } from './stores/componentstatusstore';
+	import { picStoreActions } from './stores/picstore';
 	import Toolbox from './components/Toolbox.svelte';
 
 	$:console.log('STORE',$sockStoreActions);
@@ -61,9 +62,10 @@
 					 //dispatch({type:'exitRoom', payload:data});
 					 break;
 				 case 'word':
-					 //sockStoreActions.exitRoom();
 					 uiStoreActions.setWord(data.word);
-					 //dispatch({type:'exitRoom', payload:data});
+					 break;
+				 case 'picture':
+					 picStoreActions.recievePicture(data.picture);
 					 break;
 				 //case 'game_exit':
 					//  dispatch({type:'exitGameAndRoom', payload:data});

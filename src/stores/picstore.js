@@ -29,6 +29,11 @@ const picStoreActions = {
         await sock.send(JSON.stringify(payload));
       });
       unsubscribe();
+    },
+    recievePicture: (newPic) => {
+      picStore.update(pic => {
+        return newPic;
+      });
     }
 };
 

@@ -9,13 +9,25 @@
   export let height = 200;
 	export let drawMode = false;
 
-	let canvas;
+	let canvas = null;
   let m = { x: 0, y: 0, pos:'' };
   let draw = false;
 
 
+	const updateCanvas = () => {
+		if(canvas) {
+			if($uiStoreActions.currentPlayer.id !== $sockStoreActions.id) {
+				console.log('REDRAW THE CANVAS');
+				reDraw();
+			} else {
+				console.log('LEAVE CANVAS');
+			}
+		}
+	}
 
   $: console.log($picStoreActions);
+
+	$: $picStoreActions, updateCanvas();
 
 	onMount(() => {
 		const ctx = canvas.getContext('2d');
