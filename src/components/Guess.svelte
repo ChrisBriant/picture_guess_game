@@ -6,11 +6,19 @@
   import TextInput from './TextInput.svelte';
   import Button from './Button.svelte';
   import Canvas from './Canvas.svelte';
+  import GuessList from './GuessList.svelte';
 
   let guess = '';
 
-  const sendGuess = () => {
+  const sendGuess = async () => {
     console.log('SENDING GUESS');
+    let payload = {
+      'type' : 'guess',
+      'client_id' : $sockStoreActions.id,
+      'game_id' : $uiStoreActions.gameId,
+      'guess' : guess
+    }
+    await sock.send(JSON.stringify(payload));
   }
 </script>
 
@@ -20,12 +28,19 @@
 
 
 <div>
-  <Canvas drawMode={false}/>
-  <TextInput
-   id = "guess"
-   label = "Guess what the user is drawing"
-   value = {guess}
-   on:input = {e => {guess = e.target.value} }
-  />
-  <Button id="sendguess" on:click={sendGuess}>Guess</Button>
+  <div class="row">
+    <div class="col">
+      <Canvas drawMode={false}/>
+    </div>
+    <div class="col">
+      <TextInput
+       id = "guess"
+       label = "Guess what the user is drawing"
+       value = {guess}
+       on:input = {e => {guess = e.target.value} }
+      />
+      <Button id="sendguess" on:click={sendGuess}>Guess</Button>
+      <GuessList />
+    </div>
+  </div>
 </div>

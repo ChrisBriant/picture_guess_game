@@ -1,7 +1,7 @@
 <script>
   import {createEventDispatcher} from 'svelte';
   import Icon from 'svelte-awesome';
-  import { eraser, pencil,beer,comment } from 'svelte-awesome/icons';
+  import { eraser } from 'svelte-awesome/icons';
 
   const dispatch = createEventDispatcher();
 

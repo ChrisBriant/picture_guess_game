@@ -6,6 +6,7 @@
   import TextInput from './TextInput.svelte';
   import Canvas from './Canvas.svelte';
   import Toolbox from './Toolbox.svelte';
+  import GuessList from './GuessList.svelte';
 </script>
 
 <style>
@@ -13,7 +14,13 @@
 </style>
 
 
-<div>
-  <p><strong>The word is {$uiStoreActions.word}</strong></p>
-  <Canvas drawMode={true}/>
+<div class="row">
+  <div class="col">
+    <p><strong>The word is {$uiStoreActions.word}</strong></p>
+    <Canvas drawMode={true}/>
+  </div>
+  <div class="col">
+    <h2>Guesses</h2>
+    <GuessList />
+  </div>
 </div>

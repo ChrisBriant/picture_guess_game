@@ -67,6 +67,9 @@
 				 case 'picture':
 					 picStoreActions.recievePicture(data.picture);
 					 break;
+				 case 'guess':
+					 uiStoreActions.setGuess(data);
+					 break;
 				 //case 'game_exit':
 					//  dispatch({type:'exitGameAndRoom', payload:data});
 					//  break;

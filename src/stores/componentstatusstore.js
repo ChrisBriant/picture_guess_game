@@ -7,7 +7,8 @@ const uiStore = writable({
   inRoom:false,
   inGame:false,
   currentPlayer: null,
-  word : ''
+  word : '',
+  guesses: []
 });
 
 const uiStoreActions = {
@@ -36,6 +37,14 @@ const uiStoreActions = {
       uiStore.update(sock => {
         sock.word = word;
         return sock;
+      });
+    },
+    setGuess: (guess) => {
+      uiStore.update(ui => {
+        let newGuesses = [...ui.guesses];
+        newGuesses.push(guess);
+        ui.guesses = newGuesses;
+        return ui;
       });
     }
 };
