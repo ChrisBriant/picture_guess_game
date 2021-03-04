@@ -1,0 +1,79 @@
+<script>
+    import { createEventDispatcher, onMount, onDestroy, beforeUpdate, afterUpdate } from 'svelte';
+
+    const dispatch = createEventDispatcher();
+
+    let agreed = false;
+    let autoscroll = false;
+
+    beforeUpdate(() => {
+        console.log('before update');
+        autoscroll = agreed;
+    });
+
+    afterUpdate(() => {
+        console.log('after update');
+        if(autoscroll) {
+            const modal = document.querySelector('.modal');
+            modal.scrollTo(0,modal.scrollHeight);
+        }
+    });
+
+    onMount(() => {
+        console.log('on mount');
+    });
+
+    onDestroy(() => {
+        console.log('on destroy');
+    });
+
+
+    console.log('script executed');
+</script>
+
+<style>
+    .backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.75);
+        z-index: 10;
+     }
+
+    .modal {
+        padding: 1rem;
+        position: fixed;
+        top: 5vh;
+        left: 20%;
+        width: 60%;
+        max-height: 90vh;
+        background: white;
+        border-radius: 5px;
+        z-index: 100;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+        overflow: hidden;
+    }
+
+    header {
+        border-bottom: 1px solid #ccc;
+    }
+
+</style>
+
+<div class="backdrop" on:click="{() => dispatch('cancel')}" ></div>
+
+<div class="modal">
+    <header>
+        <slot name="header" />
+    </header>
+    <div class="content">
+        <slot/>
+    </div>
+    <footer>
+        <slot name="footer" didAgree={agreed}>
+
+        </slot>
+    </footer>
+</div>

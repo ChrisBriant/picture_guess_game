@@ -68,6 +68,9 @@
 					 picStoreActions.recievePicture(data.picture);
 					 break;
 				 case 'guess':
+				 	 if (data.correct) {
+						 uiStoreActions.setWinner(data);
+					 }
 					 uiStoreActions.setGuess(data);
 					 break;
 				 //case 'game_exit':
