@@ -17,7 +17,7 @@
 	const updateCanvas = () => {
 		if(canvas) {
 			if($uiStoreActions.currentPlayer.id !== $sockStoreActions.id) {
-				console.log('REDRAW THE CANVAS');
+				console.log('REDRAW THE CANVAS',$picStoreActions.length);
 				reDraw();
 			} else {
 				console.log('LEAVE CANVAS');
@@ -44,17 +44,20 @@
 		ctx.fillStyle = '#edeae6';
 		ctx.fillRect(0, 0, width, height);
 		//Now redraw
-		console.log('Redrawing');
-		ctx.moveTo($picStoreActions[0].x,$picStoreActions[0].y);
-		for(let i=0;i<$picStoreActions.length;i++) {
-			if($picStoreActions[i].pos === 's') {
-				ctx.beginPath();
-				ctx.moveTo($picStoreActions[i].x,$picStoreActions[i]);
-			} else if ($picStoreActions[i].pos === 'e') {
-				ctx.closePath();
-			} else {
-				ctx.lineTo($picStoreActions[i].x,$picStoreActions[i].y);
-				ctx.stroke();
+		//Handle case where the bard is being wiped there is nothing to draw
+		if($picStoreActions.length > 0) {
+			console.log('Redrawing');
+			ctx.moveTo($picStoreActions[0].x,$picStoreActions[0].y);
+			for(let i=0;i<$picStoreActions.length;i++) {
+				if($picStoreActions[i].pos === 's') {
+					ctx.beginPath();
+					ctx.moveTo($picStoreActions[i].x,$picStoreActions[i]);
+				} else if ($picStoreActions[i].pos === 'e') {
+					ctx.closePath();
+				} else {
+					ctx.lineTo($picStoreActions[i].x,$picStoreActions[i].y);
+					ctx.stroke();
+				}
 			}
 		}
 	}
@@ -64,7 +67,11 @@
 		ctx.clearRect(0, 0, width, height);
 		ctx.fillStyle = '#edeae6';
 		ctx.fillRect(0, 0, width, height);
-		picStoreActions.wipe();
+		let payload = {
+			cid : $sockStoreActions.id,
+			gameId : $uiStoreActions.gameId
+		}
+		picStoreActions.wipe(payload);
 	}
 
   const handleClick = (e) => {
@@ -128,6 +135,7 @@
 		  on:mousemove={(e) => handleDrag(e)}
 		  on:mousedown={(e) => handleClick(e)}
 		  on:mouseup={(e) => handleUnClick(e)}
+			on:wipeboard={wipeBoard}
 			width={width}
 			height={height}
 		>

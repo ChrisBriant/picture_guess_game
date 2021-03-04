@@ -149,7 +149,7 @@
 
 
 <main>
-	<h1>Picture Gam</h1>
+	<h1>Picture Game</h1>
 	{#if !$uiStoreActions.registered}
 		<StartScreen />
 	{:else}

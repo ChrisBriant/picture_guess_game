@@ -12,11 +12,19 @@ const picStoreActions = {
         return newPic;
       });
     },
-    wipe: () => {
+    wipe: async (clientData) => {
       picStore.update(pic => {
         let newPic = [];
         return newPic;
       });
+      //Send a blank picture to the backend
+      let payload = {
+        'type' : 'picture',
+        'client_id' : clientData.cid,
+        'game_id' : clientData.gameId,
+        'picture' : []
+      }
+      await sock.send(JSON.stringify(payload));
     },
     sendPicture: (clientData) => {
       const unsubscribe = picStore.subscribe(async (picture) => {
