@@ -43,12 +43,13 @@
      }
 
     .modal {
+        display:block;
         padding: 1rem;
         position: fixed;
         top: 5vh;
         left: 20%;
         width: 60%;
-        max-height: 90vh;
+        max-height: 60%;
         background: white;
         border-radius: 5px;
         z-index: 100;
@@ -69,7 +70,7 @@
         <slot name="header" />
     </header>
     <div class="content">
-        <slot/>
+        <slot name="content" />
     </div>
     <footer>
         <slot name="footer" didAgree={agreed}>
