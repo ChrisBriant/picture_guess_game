@@ -10,7 +10,8 @@ const uiStore = writable({
   word : '',
   guesses: [],
   winner: null,
-  winnerList: []
+  winnerList: [],
+  gameOver: false
 });
 
 const uiStoreActions = {
@@ -50,13 +51,15 @@ const uiStoreActions = {
       });
     },
     setWinner: (data) => {
+      console.log('SETTING WINNER',data)
       uiStore.update(ui => {
         let winner;
 
         if(data) {
           winner = {
             'id' : data.client_id,
-            'name': data.client_name
+            'name': data.client_name,
+            'guess': data.guess
           };
         } else {
           winner = null;
@@ -65,13 +68,29 @@ const uiStoreActions = {
         return ui;
       });
     },
-    continueNextRound: () => {
+    continueNextRound: (data) => {
       //remove the winner and add to the winner list
       uiStore.update(ui => {
         let newWinnerList = [...ui.winnerList];
-        newWinnerList.push(ui.winner);
+        newWinnerList.push({...ui.winner});
         ui.winnerList = newWinnerList;
         ui.winner = null;
+        return ui;
+      });
+    },
+    setGameOver: (data) => {
+      //Add winner to winner list
+      uiStore.update(ui => {
+        let winner = {
+          'id' : data.client_id,
+          'name': data.client_name,
+          'guess': data.guess
+        };
+        let newWinnerList = [...ui.winnerList];
+        newWinnerList.push(winner);
+        ui.winnerList = newWinnerList;
+        ui.winner = null;
+        ui.gameOver = true;
         return ui;
       });
     }

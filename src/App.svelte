@@ -74,11 +74,16 @@
 					 uiStoreActions.setGuess(data);
 					 break;
 				 case 'new_round':
-				 	 uiStoreActions.setWinner(null);
+				 	 uiStoreActions.continueNextRound();
+				 	 uiStoreActions.setWinner(false);
 					 uiStoreActions.setStartGame({
 						 'startPlayer' : data.startplayer,
 						 'gameId' : data.game_id
 					 });
+					 break;
+				 case 'game_over':
+					 uiStoreActions.setGuess(data);
+					 uiStoreActions.setGameOver(data);
 					 break;
 				 //case 'game_exit':
 					//  dispatch({type:'exitGameAndRoom', payload:data});
