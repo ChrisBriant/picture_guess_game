@@ -2,10 +2,14 @@
   import sock from '../services/socket';
   import { sockStoreActions } from '../stores/socketstore';
   import { uiStoreActions } from '../stores/componentstatusstore';
+  import { picStoreActions } from '../stores/picstore';
   import DrawArea from '../components/DrawArea.svelte';
   import Guess from '../components/Guess.svelte';
   import Modal from '../components/Modal.svelte';
   import Button from '../components/Button.svelte';
+  import {groupBy} from '../services/helpers';
+
+
   $: console.log('UI STORE',$uiStoreActions);
 
   let scores = {};
@@ -24,16 +28,7 @@
     console.log('I want to submit something');
   }
 
-  function groupBy(objectArray, property) {
-    return objectArray.reduce(function (acc, obj) {
-      let key = obj[property]
-      if (!acc[key]) {
-        acc[key] = []
-      }
-      acc[key].push(obj)
-      return acc
-    }, {})
-  }
+
 
   const gameOver = () => {
     //Calculate the scores
@@ -44,6 +39,20 @@
       //scoreKeys = scores.keys();
     }
   }
+
+  const clearGame = async () => {
+    let payload = {
+      'type' : 'destroy_room',
+      'client_id' :  $sockStoreActions.id
+    }
+    await sock.send(JSON.stringify(payload));
+
+    //Clear stores
+    uiStoreActions.reset();
+    picStoreActions.reset();
+    sockStoreActions.reset();
+  }
+
 </script>
 
 <style>
@@ -111,7 +120,7 @@
           <br/>
           <Button type="button"
             id="continue"
-            on:click={submit}
+            on:click={clearGame}
           >
               Continue
           </Button>

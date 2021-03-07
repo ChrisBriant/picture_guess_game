@@ -2,8 +2,7 @@
 
 import { writable } from 'svelte/store';
 
-const uiStore = writable({
-  registered:false,
+const defaultStore = {
   inRoom:false,
   inGame:false,
   currentPlayer: null,
@@ -12,6 +11,11 @@ const uiStore = writable({
   winner: null,
   winnerList: [],
   gameOver: false
+}
+
+const uiStore = writable({
+  ...defaultStore,
+  registered:false
 });
 
 const uiStoreActions = {
@@ -92,6 +96,15 @@ const uiStoreActions = {
         ui.winner = null;
         ui.gameOver = true;
         return ui;
+      });
+    },
+    reset: (data) => {
+      uiStore.update(ui => {
+        let resetStore = {
+          registered: ui.registered,
+          ...defaultStore
+        };
+        return resetStore;
       });
     }
 };

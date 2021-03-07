@@ -40,6 +40,15 @@ const sockStoreActions = {
         sock.room = room;
         return sock;
       });
+    },
+    reset: () => {
+      socketStore.update(sock => {
+        let resetSock = {
+          ...sock,
+          room: []
+        }
+        return resetSock;
+      });
     }
 };
 

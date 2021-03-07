@@ -16,7 +16,7 @@
 
 <div class="row">
   <div class="col">
-    <p><strong>The word is {$uiStoreActions.word}</strong></p>
+    <p>The word is <strong id='the-word'>{$uiStoreActions.word}</strong></p>
     <Canvas drawMode={true}/>
   </div>
   <div class="col">

@@ -42,6 +42,11 @@ const picStoreActions = {
       picStore.update(pic => {
         return newPic;
       });
+    },
+    reset: () => {
+      picStore.update(pic => {
+        return [];
+      });
     }
 };
 
