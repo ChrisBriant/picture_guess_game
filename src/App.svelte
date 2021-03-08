@@ -81,8 +81,26 @@
 						 'gameId' : data.game_id
 					 });
 					 break;
+				 case 'win_from_give_up':
+				 	 console.log('WIN FROM GIVE UP', $uiStoreActions.currentPlayer);
+					 data = {
+						 client_id : $uiStoreActions.currentPlayer.id,
+						 client_name : $uiStoreActions.currentPlayer.name,
+						 guess : 'Player(s) gave up'
+					 }
+					 uiStoreActions.setWinner(data);
+					 //uiStoreActions.setGameOver(data);
+					 break;
 				 case 'game_over':
 					 uiStoreActions.setGuess(data);
+					 uiStoreActions.setGameOver(data);
+					 break;
+				 case 'game_over_from_give_up':
+					 data = {
+						 client_id : $uiStoreActions.currentPlayer.id,
+						 client_name : $uiStoreActions.currentPlayer.name,
+						 guess : 'Player(s) gave up'
+					 }
 					 uiStoreActions.setGameOver(data);
 					 break;
 				 //case 'game_exit':

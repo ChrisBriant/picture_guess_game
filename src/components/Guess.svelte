@@ -20,6 +20,16 @@
     }
     await sock.send(JSON.stringify(payload));
   }
+
+  const sendGiveUp = async () => {
+    console.log('SENDING GUESS');
+    let payload = {
+      'type' : 'giveup',
+      'client_id' : $sockStoreActions.id,
+      'game_id' : $uiStoreActions.gameId,
+    }
+    await sock.send(JSON.stringify(payload));
+  }
 </script>
 
 <style>
@@ -39,7 +49,14 @@
        value = {guess}
        on:input = {e => {guess = e.target.value} }
       />
-      <Button id="sendguess" on:click={sendGuess}>Guess</Button>
+      <div class="row">
+        <div class="col">
+          <Button id="sendguess" on:click={sendGuess}>Guess</Button>
+        </div>
+        <div class="col">
+          <Button id="giveup" on:click={sendGiveUp}>Give Up</Button>
+        </div>
+      </div>
       <GuessList />
     </div>
   </div>
