@@ -22,23 +22,35 @@
 
 <div>
   {#if $sockStoreActions.rooms.length > 0}
+			<div class="row">
+				<div class="col">
+					<strong>Room Name</strong>
+				</div>
+				<div class="col">
+					<strong>Owner</strong>
+				</div>
+				<div class="col">
+				</div>
+				<div class="col">
+					<strong>Players</strong>
+				</div>
+				<div class="col"></div>
+			</div>
       {#each $sockStoreActions.rooms as room, i}
         <div class="row" key={i}>
           <div class="col">
             <p>{room.name}</p>
           </div>
           <div class="col">
-            <p>{room.owner}</p>
+            <p>{room.owner_name}</p>
           </div>
           <div class="col">
             <p>{room.members.length}</p>
           </div>
           <div class="col">
-            <ul>
-              {#each room.members as member}
-                {member}
+              {#each room.user_names as member}
+                <p>{member}</p>
               {/each}
-            </ul>
           </div>
           <div class="col">
             {#if room.locked === 'false' }
