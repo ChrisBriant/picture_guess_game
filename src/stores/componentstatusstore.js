@@ -10,7 +10,8 @@ const defaultStore = {
   guesses: [],
   winner: null,
   winnerList: [],
-  gameOver: false
+  gameOver: false,
+  giveUp: false
 }
 
 const uiStore = writable({
@@ -79,6 +80,8 @@ const uiStoreActions = {
         newWinnerList.push({...ui.winner});
         ui.winnerList = newWinnerList;
         ui.winner = null;
+        ui.giveUp = false;
+        ui.guesses = [];
         return ui;
       });
     },
@@ -105,6 +108,12 @@ const uiStoreActions = {
           ...defaultStore
         };
         return resetStore;
+      });
+    },
+    setGiveUp: () => {
+      uiStore.update(ui => {
+        ui.giveUp = true;
+        return ui;
       });
     }
 };

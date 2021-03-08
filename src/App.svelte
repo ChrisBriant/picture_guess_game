@@ -103,6 +103,26 @@
 					 }
 					 uiStoreActions.setGameOver(data);
 					 break;
+				 case 'game_over_from_give_up':
+					 data = {
+						 client_id : $uiStoreActions.currentPlayer.id,
+						 client_name : $uiStoreActions.currentPlayer.name,
+						 guess : 'Player(s) gave up'
+					 }
+					 uiStoreActions.setGameOver(data);
+					 break;
+					case 'giveup':
+						let guessData = {
+													  guess: "I give up!",
+													  client_id: data.client_id,
+													  client_name: data.client_name,
+													  correct: false
+												}
+					 uiStoreActions.setGuess(guessData);
+					 if($sockStoreActions.id === data.client_id) {
+						 uiStoreActions.setGiveUp();
+					 }
+					 break;
 				 //case 'game_exit':
 					//  dispatch({type:'exitGameAndRoom', payload:data});
 					//  break;

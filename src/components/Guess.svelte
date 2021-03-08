@@ -43,20 +43,28 @@
       <Canvas drawMode={false}/>
     </div>
     <div class="col">
-      <TextInput
-       id = "guess"
-       label = "Guess what the user is drawing"
-       value = {guess}
-       on:input = {e => {guess = e.target.value} }
-      />
-      <div class="row">
-        <div class="col">
-          <Button id="sendguess" on:click={sendGuess}>Guess</Button>
+      {#if !$uiStoreActions.giveUp}
+        <div>
+          <TextInput
+           id = "guess"
+           label = "Guess what the user is drawing"
+           value = {guess}
+           on:input = {e => {guess = e.target.value} }
+          />
+          <div class="row">
+            <div class="col">
+              <Button id="sendguess" on:click={sendGuess}>Guess</Button>
+            </div>
+            <div class="col">
+              <Button id="giveup" on:click={sendGiveUp}>Give Up</Button>
+            </div>
+          </div>
         </div>
-        <div class="col">
-          <Button id="giveup" on:click={sendGiveUp}>Give Up</Button>
+      {:else}
+        <div>
+          <h2>You have given up!</h2>
         </div>
-      </div>
+      {/if}
       <GuessList />
     </div>
   </div>
