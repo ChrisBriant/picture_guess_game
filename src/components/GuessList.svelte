@@ -7,10 +7,14 @@
 </script>
 
 <style>
-
+  guess-panel {
+    max-height: 20vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
 </style>
 
-<div>
+<div class="guess-panel">
   {#if $uiStoreActions.guesses.length > 0}
       {#each $uiStoreActions.guesses as guess }
         <div class="row">

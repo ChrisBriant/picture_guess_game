@@ -42,18 +42,13 @@
         <div class="col"><p>{member.name}</p></div>
       </div>
     {/each}
-    {#if $sockStoreActions.room.members > 1}
+    {#if $sockStoreActions.room.members.length > 1}
       <div class="row">
         <div class="col">
-          <Button on:click={startGame}>Start Game</Button>
+          <Button id="start-game" on:click={startGame}>Start Game</Button>
         </div>
       </div>
     {/if}
-    <div class="row">
-      <div class="col">
-        <Button id="start-game" on:click={startGame}>Start Game</Button>
-      </div>
-    </div>
   {:else}
     <GameScreen />
   {/if}
