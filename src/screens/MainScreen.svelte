@@ -5,6 +5,7 @@
 	import Button from '../components/Button.svelte';
 	import RoomList from '../components/RoomList.svelte';
 	import RoomScreen from '../screens/RoomScreen.svelte';
+	import Modal from '../components/Modal.svelte';
 	import { sockStoreActions } from '../stores/socketstore';
 	import { uiStoreActions } from '../stores/componentstatusstore';
 
@@ -41,5 +42,25 @@
 		 />
 		 <Button id="sendroom" on:click={sendRoom}>Create Room</Button>
 		 <RoomList />
+	{/if}
+	{#if $uiStoreActions.roomFailure }
+		<Modal on:cancel="{() => {uiStoreActions.setRoomFailure(false)}}"
+			on:close="{() => {uiStoreActions.setRoomFailure(false)}}">
+			<div slot="header" class="modal-header">
+					<h3>Unable to Create Room</h3>
+			</div>
+			<div slot="content">
+				<p>Sorry, this room already exists, please choose a different name.</p>
+			</div>
+			<div slot="footer">
+					<br/>
+					<Button type="button"
+						id="ok"
+						on:click={() => {uiStoreActions.setRoomFailure(false)}}
+					>
+							Ok
+					</Button>
+			</div>
+		</Modal>
 	{/if}
 </div>

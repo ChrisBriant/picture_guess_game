@@ -11,7 +11,8 @@ const defaultStore = {
   winner: null,
   winnerList: [],
   gameOver: false,
-  giveUp: false
+  giveUp: false,
+  roomFailure: false
 }
 
 const uiStore = writable({
@@ -113,6 +114,12 @@ const uiStoreActions = {
     setGiveUp: () => {
       uiStore.update(ui => {
         ui.giveUp = true;
+        return ui;
+      });
+    },
+    setRoomFailure: (failstatus) => {
+      uiStore.update(ui => {
+        ui.roomFailure = failstatus;
         return ui;
       });
     }

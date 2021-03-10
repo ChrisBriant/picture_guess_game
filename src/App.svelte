@@ -123,6 +123,9 @@
 						 uiStoreActions.setGiveUp();
 					 }
 					 break;
+			 	 case 'room_failure':
+				 	uiStoreActions.setRoomFailure(true);
+				 	break;
 				 //case 'game_exit':
 					//  dispatch({type:'exitGameAndRoom', payload:data});
 					//  break;
