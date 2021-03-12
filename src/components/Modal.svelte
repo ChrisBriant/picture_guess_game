@@ -19,16 +19,6 @@
         }
     });
 
-    onMount(() => {
-        console.log('on mount');
-    });
-
-    onDestroy(() => {
-        console.log('on destroy');
-    });
-
-
-    console.log('script executed');
 </script>
 
 <style>
@@ -50,6 +40,7 @@
         left: 20%;
         width: 60%;
         max-height: 60%;
+        height: auto;
         background: white;
         border-radius: 5px;
         z-index: 100;
@@ -59,6 +50,15 @@
 
     header {
         border-bottom: 1px solid #ccc;
+    }
+
+    modal-title {
+      text-align: center;
+      padding-bottom: 1rem;
+    }
+
+    h3.modal-title {
+      color: red;
     }
 
 </style>

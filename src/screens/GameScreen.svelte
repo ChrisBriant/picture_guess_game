@@ -57,6 +57,12 @@
 
 <style>
 
+  .modal-scroll {
+    overflow-y: auto;
+    max-height: 10rem;
+    overflow-x: hidden;
+  }
+
 </style>
 
 
@@ -71,7 +77,7 @@
   {#if $uiStoreActions.winner}
     <Modal on:cancel="{() => dispatch('cancel')}"
       on:close="{() => dispatch('cancel')}">
-      <div slot="header" class="modal-header">
+      <div slot="header" class="modal-title">
           <h3>Winner!</h3>
       </div>
       <div slot="content">
@@ -91,30 +97,32 @@
   {#if $uiStoreActions.gameOver}
     <Modal on:cancel="{() => dispatch('cancel')}"
       on:close="{() => dispatch('cancel')}">
-      <div slot="header" class="modal-header">
+      <div slot="header" class="modal-title">
           <h3>Game Over</h3>
       </div>
       <div slot="content">
         <p>Here are the scores:</p>
-        {#each Object.keys(scores) as player}
-          <div class="row">
-            <div class="col">
-              <p>{player}</p>
-            </div>
-            <div class="col">
-              <p>{scores[player].length}</p>
-            </div>
-            <div class="col">
-              {#each scores[player] as score}
-                <div class="row">
-                  <div class="col">
-                    <p>{score.guess}</p>
+        <div class="modal-scroll">
+          {#each Object.keys(scores) as player}
+            <div class="row">
+              <div class="col">
+                <p>{player}</p>
+              </div>
+              <div class="col">
+                <p>{scores[player].length}</p>
+              </div>
+              <div class="col">
+                {#each scores[player] as score}
+                  <div class="row">
+                    <div class="col">
+                      <p>{score.guess}</p>
+                    </div>
                   </div>
-                </div>
-              {/each}
+                {/each}
+              </div>
             </div>
-          </div>
-        {/each}
+          {/each}
+        </div>
       </div>
       <div slot="footer">
           <br/>
@@ -130,7 +138,7 @@
   {#if $uiStoreActions.quitStatus}
     <Modal on:cancel="{() => dispatch('cancel')}"
       on:close="{() => dispatch('cancel')}">
-      <div slot="header" class="modal-header">
+      <div slot="header" class="modal-title">
           <h3>Game Over</h3>
       </div>
       <div slot="content">
