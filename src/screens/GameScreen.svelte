@@ -127,4 +127,28 @@
       </div>
     </Modal>
   {/if}
+  {#if $uiStoreActions.quitStatus}
+    <Modal on:cancel="{() => dispatch('cancel')}"
+      on:close="{() => dispatch('cancel')}">
+      <div slot="header" class="modal-header">
+          <h3>Game Over</h3>
+      </div>
+      <div slot="content">
+        <div class="Row">
+          <div class="Col">
+            <p>All other players have quit, press continue to return to the lobby.</p>
+          </div>
+        </div>
+      </div>
+      <div slot="footer">
+          <br/>
+          <Button type="button"
+            id="continue"
+            on:click={clearGame}
+          >
+              Continue
+          </Button>
+      </div>
+    </Modal>
+  {/if}
 </div>

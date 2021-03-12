@@ -12,7 +12,8 @@ const defaultStore = {
   winnerList: [],
   gameOver: false,
   giveUp: false,
-  roomFailure: false
+  roomFailure: false,
+  quitStatus: false
 }
 
 const uiStore = writable({
@@ -120,6 +121,12 @@ const uiStoreActions = {
     setRoomFailure: (failstatus) => {
       uiStore.update(ui => {
         ui.roomFailure = failstatus;
+        return ui;
+      });
+    },
+    setAllPlayersQuit: (quitstatus) => {
+      uiStore.update(ui => {
+        ui.quitStatus = quitstatus;
         return ui;
       });
     }
