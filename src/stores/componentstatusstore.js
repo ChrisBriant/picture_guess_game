@@ -13,7 +13,8 @@ const defaultStore = {
   gameOver: false,
   giveUp: false,
   roomFailure: false,
-  quitStatus: false
+  quitStatus: false,
+  limit5: false
 }
 
 const uiStore = writable({
@@ -127,6 +128,12 @@ const uiStoreActions = {
     setAllPlayersQuit: (quitstatus) => {
       uiStore.update(ui => {
         ui.quitStatus = quitstatus;
+        return ui;
+      });
+    },
+    setLimit5: (limit5Status) => {
+      uiStore.update(ui => {
+        ui.limit5 = limit5Status;
         return ui;
       });
     }

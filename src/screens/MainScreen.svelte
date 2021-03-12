@@ -26,7 +26,6 @@
 </script>
 
 <style>
-
 </style>
 
 
@@ -46,7 +45,7 @@
 	{#if $uiStoreActions.roomFailure }
 		<Modal on:cancel="{() => {uiStoreActions.setRoomFailure(false)}}"
 			on:close="{() => {uiStoreActions.setRoomFailure(false)}}">
-			<div slot="header" class="modal-header">
+			<div slot="header" class="modal-title">
 					<h3>Unable to Create Room</h3>
 			</div>
 			<div slot="content">
@@ -57,6 +56,27 @@
 					<Button type="button"
 						id="ok"
 						on:click={() => {uiStoreActions.setRoomFailure(false)}}
+					>
+							Ok
+					</Button>
+			</div>
+		</Modal>
+	{/if}
+	{#if $uiStoreActions.limit5 }
+		<Modal on:cancel="{() => {uiStoreActions.setRoomFailure(false)}}"
+			on:close="{() => {uiStoreActions.setRoomFailure(false)}}">
+			<div slot="header" class="modal-title">
+					<h3>Unable to Join Room</h3>
+			</div>
+			<div slot="content">
+				<p>Sorry, this room has reached it's limit of five players. You can
+				create a new room and wait for players to join.</p>
+			</div>
+			<div slot="footer">
+					<br/>
+					<Button type="button"
+						id="ok"
+						on:click={() => {uiStoreActions.setLimit5(false)}}
 					>
 							Ok
 					</Button>

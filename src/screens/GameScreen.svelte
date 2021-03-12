@@ -59,7 +59,7 @@
 
   .modal-scroll {
     overflow-y: auto;
-    max-height: 10rem;
+    max-height: 8rem;
     overflow-x: hidden;
   }
 

@@ -129,6 +129,9 @@
 				 case 'everyone_quit':
 				 	uiStoreActions.setAllPlayersQuit(true);
 					break;
+				case 'limit_5':
+ 				 	uiStoreActions.setLimit5(true);
+ 					break;
 				 //case 'game_exit':
 					//  dispatch({type:'exitGameAndRoom', payload:data});
 					//  break;
