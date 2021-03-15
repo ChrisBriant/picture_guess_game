@@ -83,6 +83,10 @@
   .outline.success:active {
     background: #c2ffd1;
   }
+
+  .expand {
+    width: 90%;
+  }
 </style>
 
 {#if href}

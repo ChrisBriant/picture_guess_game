@@ -25,12 +25,16 @@
 </style>
 
 
-<div>
-	<TextInput
-		id = "name"
-		label = "Enter Name"
-		value = {name}
-		on:input = {e => {name = e.target.value} }
-	 />
-	 <Button id="sendname" on:click={sendName}>Start</Button>
+<div class="row">
+	<div class="col-4"></div>
+	<div class="col-4">
+		<TextInput
+			id = "name"
+			label = "Enter Name"
+			value = {name}
+			on:input = {e => {name = e.target.value} }
+		 />
+		 <Button id="sendname" on:click={sendName}>Start</Button>
+	 </div>
+	 <div class="col-4"></div>
 </div>

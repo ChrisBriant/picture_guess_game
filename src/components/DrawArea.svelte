@@ -15,11 +15,11 @@
 
 
 <div class="row">
-  <div class="col">
+  <div class="col-8">
     <p>The word is <strong id='the-word'>{$uiStoreActions.word}</strong></p>
     <Canvas drawMode={true}/>
   </div>
-  <div class="col">
+  <div class="col-4">
     <h2>Guesses</h2>
     <GuessList />
   </div>

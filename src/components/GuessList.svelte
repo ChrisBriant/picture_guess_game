@@ -4,17 +4,28 @@
   import Canvas from './Canvas.svelte';
   import Icon from 'svelte-awesome';
   import { check, times } from 'svelte-awesome/icons';
+
+  $: $uiStoreActions.guesses.length, scrollDown();
+
+  const scrollDown = () => {
+    console.log('I need to scroll down');
+    let guesses = document.getElementById('guesses');
+    if(guesses) {
+      guesses.scrollTop = guesses.scrollHeight;
+    }
+  }
 </script>
 
 <style>
-  guess-panel {
+  .guess-panel {
     max-height: 20vh;
     overflow-y: scroll;
     overflow-x: hidden;
+    margin-top: 1rem;
   }
 </style>
 
-<div class="guess-panel">
+<div id='guesses' class="guess-panel">
   {#if $uiStoreActions.guesses.length > 0}
       {#each $uiStoreActions.guesses as guess }
         <div class="row">

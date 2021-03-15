@@ -25,25 +25,43 @@
 </script>
 
 <style>
+  .member-panel {
+      border: 1px solid black;
+      border-radius: 5px;
+      padding: 1rem;
+  }
 
+  .gap {
+    margin: 1rem;
+  }
 </style>
 
 
 <div>
   <div class="row">
-    <div class="col"><h1>You are in room {$sockStoreActions.room.name}</h1></div>
+    <div class="col"><h1>You are in room &quot;{$sockStoreActions.room.name}&quot;</h1></div>
   </div>
   {#if !$uiStoreActions.inGame}
     <div class="row">
-      <div class="col"><p>Members</p></div>
-    </div>
-    {#each $sockStoreActions.room.members as member}
-      <div class="row">
-        <div class="col"><p>{member.name}</p></div>
+      <div class="col-4"></div>
+      <div class="col-4">
+        <div class="member-panel">
+          <div class="row">
+            <div class="col"><p><strong>Members</strong></p></div>
+          </div>
+          <ul>
+            {#each $sockStoreActions.room.members as member}
+              <div class="row">
+                <div class="col"><li>{member.name}</li></div>
+              </div>
+            {/each}
+          </ul>
+        </div>
       </div>
-    {/each}
+      <div class="col-4"></div>
+    </div>
     {#if $sockStoreActions.room.members.length > 1}
-      <div class="row">
+      <div class="row gap">
         <div class="col">
           <Button id="start-game" on:click={startGame}>Start Game</Button>
         </div>

@@ -26,6 +26,7 @@
 </script>
 
 <style>
+
 </style>
 
 
@@ -33,14 +34,20 @@
 	{#if $uiStoreActions.inRoom }
 		<RoomScreen />
 	{:else}
-	 <TextInput
-			id = "room-name"
-			label = "Room Name"
-			value = {roomName}
-	   on:input = {e => {roomName = e.target.value} }
-		 />
-		 <Button id="sendroom" on:click={sendRoom}>Create Room</Button>
-		 <RoomList />
+		<div class="row">
+			<div class="col-4"></div>
+			<div class="col-4">
+		 		<TextInput
+				id = "room-name"
+				label = "Room Name"
+				value = {roomName}
+		   	on:input = {e => {roomName = e.target.value} }
+			 />
+			 <Button id="sendroom" on:click={sendRoom}>Create Room</Button>
+			</div>
+			<div class="col-4"></div>
+		</div>
+		<RoomList />
 	{/if}
 	{#if $uiStoreActions.roomFailure }
 		<Modal on:cancel="{() => {uiStoreActions.setRoomFailure(false)}}"

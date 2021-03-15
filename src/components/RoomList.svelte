@@ -16,12 +16,17 @@
 </script>
 
 <style>
-
+	.room-panel {
+			border: 1px solid black;
+			border-radius: 5px;
+			padding: 1rem;
+	}
 </style>
 
 
-<div>
+<div class="{$sockStoreActions.rooms.length>0 ?'room-panel' : '' }">
   {#if $sockStoreActions.rooms.length > 0}
+			<h2>Rooms</h2>
 			<div class="row">
 				<div class="col">
 					<strong>Room Name</strong>
@@ -48,9 +53,11 @@
             <p>{room.members.length}</p>
           </div>
           <div class="col">
+						<ul>
               {#each room.user_names as member}
-                <p>{member}</p>
+                <li>{member}</li>
               {/each}
+						</ul>
           </div>
           <div class="col">
             {#if room.locked === 'false' }

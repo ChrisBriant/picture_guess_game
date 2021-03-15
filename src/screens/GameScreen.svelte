@@ -68,7 +68,7 @@
 
 <div>
   {#if $uiStoreActions.currentPlayer.id === $sockStoreActions.id}
-    <p>You are the start player you go first!AAAAAA</p>
+    <p>You are the start player you go first!</p>
     <DrawArea />
   {:else}
     <p>{$uiStoreActions.currentPlayer.name} is the start player.</p>

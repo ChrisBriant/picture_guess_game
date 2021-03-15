@@ -118,8 +118,12 @@
 </script>
 
 <style>
-	canvas {
+	.canvas-drawing {
 		cursor:crosshair;
+	}
+
+	.canvas-nocursor {
+		cursor:none;
 	}
 
 	.tool-panel {
@@ -131,6 +135,7 @@
 <div>
 	{#if drawMode}
 		<canvas
+			class="canvas-drawing"
 		  bind:this={canvas}
 		  on:mousemove={(e) => handleDrag(e)}
 		  on:mousedown={(e) => handleClick(e)}
@@ -148,6 +153,7 @@
 		 </div>
 	{:else}
 		<canvas
+			class="canvas-nocursor"
 			bind:this={canvas}
 			width={width}
 			height={height}

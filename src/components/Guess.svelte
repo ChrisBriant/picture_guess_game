@@ -39,10 +39,10 @@
 
 <div>
   <div class="row">
-    <div class="col">
+    <div class="col-8">
       <Canvas drawMode={false}/>
     </div>
-    <div class="col">
+    <div class="col-4">
       {#if !$uiStoreActions.giveUp}
         <div>
           <TextInput
@@ -53,10 +53,12 @@
           />
           <div class="row">
             <div class="col">
-              <Button id="sendguess" on:click={sendGuess}>Guess</Button>
+              <Button id="sendguess" mode={'expand'} on:click={sendGuess}>Guess</Button>
             </div>
+          </div>
+          <div class="row">
             <div class="col">
-              <Button id="giveup" on:click={sendGiveUp}>Give Up</Button>
+              <Button id="giveup" mode={'expand'} on:click={sendGiveUp}>Give Up</Button>
             </div>
           </div>
         </div>
