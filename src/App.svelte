@@ -11,16 +11,19 @@
 
 	$:console.log('STORE',$sockStoreActions);
 
+	let connected = false;
+
 
 	if (sock) {
 	 sock.onopen = function() {
 			console.log("Connected");
+			connected = true;
 	 }
 
 	 sock.onclose = (e) =>  {
 			console.log("Connection closed (wasClean = " + e.wasClean + ", code = " + e.code + ", reason = '" + e.reason + "')");
-			//this = null;
 			console.log(e,sock);
+			connected = false;
 	 }
 
 	 sock.onmessage = function(e) {
@@ -132,45 +135,6 @@
 				case 'limit_5':
  				 	uiStoreActions.setLimit5(true);
  					break;
-				 //case 'game_exit':
-					//  dispatch({type:'exitGameAndRoom', payload:data});
-					//  break;
-				 // case 'room_exit_nonmember':
-					//  dispatch({type:'exitRoomKnockout', payload:data});
-					//  break;
-				 // case 'hand':
-					//  dispatch({type:'hand', payload:data});
-					//  break;
-				 // case 'new_round':
-					//  dispatch({type:'roundResult', payload:data});
-					//  break;
-				 // case 'destroy_room':
-					//  dispatch({type:'destroyRoom', payload:JSON.parse(data.rooms)});
-					//  break;
-				 // case 'room_message':
-					//  dispatch({type:'roomMessage', payload:data});
-					//  break;
-				 // case 'in_room_pm':
-					//  dispatch({type:'roomPm', payload:data});
-					//  break;
-				 // case 'trump_selected':
-					//  dispatch({type:'newTrump', payload:data});
-					//  break;
-				 // case 'end_game':
-					//  dispatch({type:'endGame', payload:data});
-					//  break;
-				 // case 'tie_break':
-					//  dispatch({type:'tieBreak', payload:data});
-					//  break;
-				 // case 'end_tie_break':
-					//  dispatch({type:'endTieBreak', payload:data});
-					//  break;
-				 // case 'win_as_knockout':
-					//  dispatch({type:'winAsKnockout', payload:data});
-					//  break;
-				 // case 'knockout':
-					//  dispatch({type:'knockout', payload:data});
-					//  break;
 				 default:
 				 	console.log('default aciton');
 		 }
@@ -215,10 +179,19 @@
 
 <main>
 	<h1>Picture Game</h1>
-	{#if !$uiStoreActions.registered}
-		<StartScreen />
+	{#if connected}
+		{#if !$uiStoreActions.registered}
+			<StartScreen />
+		{:else}
+			<MainScreen />
+		{/if}
 	{:else}
-		<MainScreen />
+		<div class="row">
+			<div class="col">
+				<h2>Sorry there is no connection to the server!</h2>
+				<p>Please try again later.</p>
+			</div>
+		</div>
 	{/if}
 
 </main>
