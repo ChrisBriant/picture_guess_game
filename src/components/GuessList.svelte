@@ -23,6 +23,10 @@
     overflow-x: hidden;
     margin-top: 1rem;
   }
+
+  .space {
+    height:50px;
+  }
 </style>
 
 <div id='guesses' class="guess-panel">
@@ -48,5 +52,6 @@
           {/if}
         </div>
       {/each}
+      <div class="space"></div>
   {/if}
 </div>
