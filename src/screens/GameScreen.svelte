@@ -9,9 +9,6 @@
   import Button from '../components/Button.svelte';
   import {groupBy} from '../services/helpers';
 
-
-  $: console.log('UI STORE',$uiStoreActions);
-
   let scores = {};
   let scoreKeys = [];
 
@@ -25,18 +22,14 @@
       'game_id' : $uiStoreActions.gameId
     }
     await sock.send(JSON.stringify(payload));
-    console.log('I want to submit something');
   }
 
 
 
   const gameOver = () => {
     //Calculate the scores
-    console.log('GAMEOVER STATUS', $uiStoreActions.gameOver);
     if($uiStoreActions.gameOver) {
       scores = groupBy($uiStoreActions.winnerList,'name');
-      console.log('SCORES', scores);
-      //scoreKeys = scores.keys();
     }
   }
 

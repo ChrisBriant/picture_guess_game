@@ -11,15 +11,12 @@
 
   let roomName = '';
 
-	//$:console.log('STORE',$sockStoreActions);
-
  const sendRoom = async () => {
    let payload = {
      'type' : 'create_room',
      'client_id' : $sockStoreActions.id,
      'name' : roomName
    }
-   console.log(payload);
    await sock.send(JSON.stringify(payload));
  }
 

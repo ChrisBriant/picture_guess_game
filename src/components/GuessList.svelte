@@ -8,7 +8,6 @@
   $: $uiStoreActions.guesses.length, scrollDown();
 
   const scrollDown = () => {
-    console.log('I need to scroll down');
     let guesses = document.getElementById('guesses');
     if(guesses) {
       guesses.scrollTop = guesses.scrollHeight;

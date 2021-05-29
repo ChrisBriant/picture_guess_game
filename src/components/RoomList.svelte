@@ -2,10 +2,7 @@
 	import sock from '../services/socket';
   import { sockStoreActions } from '../stores/socketstore';
 
-  $:console.log('ROOMS', $sockStoreActions.rooms)
-
   const joinRoom = async (roomID) => {
-    console.log('Trying to enter the room', roomID);
     let payload = {
       'type' : 'enter_room',
       'client_id' : $sockStoreActions.id,

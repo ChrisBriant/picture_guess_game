@@ -7,12 +7,10 @@
     let autoscroll = false;
 
     beforeUpdate(() => {
-        console.log('before update');
         autoscroll = agreed;
     });
 
     afterUpdate(() => {
-        console.log('after update');
         if(autoscroll) {
             const modal = document.querySelector('.modal');
             modal.scrollTo(0,modal.scrollHeight);

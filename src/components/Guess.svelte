@@ -22,7 +22,6 @@
   }
 
   const sendGiveUp = async () => {
-    console.log('SENDING GUESS');
     let payload = {
       'type' : 'giveup',
       'client_id' : $sockStoreActions.id,

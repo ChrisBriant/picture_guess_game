@@ -17,15 +17,10 @@
 	const updateCanvas = () => {
 		if(canvas) {
 			if($uiStoreActions.currentPlayer.id !== $sockStoreActions.id) {
-				console.log('REDRAW THE CANVAS',$picStoreActions.length);
 				reDraw();
-			} else {
-				console.log('LEAVE CANVAS');
 			}
 		}
 	}
-
-  $: console.log($picStoreActions);
 
 	$: $picStoreActions, updateCanvas();
 
@@ -46,7 +41,6 @@
 		//Now redraw
 		//Handle case where the bard is being wiped there is nothing to draw
 		if($picStoreActions.length > 0) {
-			console.log('Redrawing');
 			ctx.moveTo($picStoreActions[0].x,$picStoreActions[0].y);
 			for(let i=0;i<$picStoreActions.length;i++) {
 				if($picStoreActions[i].pos === 's') {
@@ -80,7 +74,6 @@
     m.x = e.clientX - e.target.offsetLeft;
     m.y = e.clientY - e.target.offsetTop;
 		m.pos = 's';
-    console.log('Click');
     draw = true;
 		ctx.beginPath();
     ctx.moveTo(m.x,m.y);
@@ -113,7 +106,6 @@
 		}
 		picStoreActions.sendPicture(payload);
     draw = false;
-    console.log('Un Click');
   }
 </script>
 

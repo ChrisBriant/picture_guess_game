@@ -59,7 +59,6 @@ const uiStoreActions = {
       });
     },
     setWinner: (data) => {
-      console.log('SETTING WINNER',data)
       uiStore.update(ui => {
         let winner;
 
